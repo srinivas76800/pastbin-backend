@@ -9,8 +9,13 @@ async function bootstrap() {
     credentials: true,
   });
 
-  const port = process.env.PORT || 3000;
-  await app.listen(port);
+  const port = process.env.PORT;
+  if (!port) {
+    throw new Error('PORT is not defined'); // fail fast
+  }
+
+  await app.listen(Number(port));
+  console.log('🚀 Server running on port:', port);
   console.log('Server running on port:', port);
 }
 bootstrap();
