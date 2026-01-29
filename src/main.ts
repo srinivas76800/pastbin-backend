@@ -5,6 +5,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const allowedOrigins = [
+    'https://pastbin-frontend.vercel.app',
     'http://localhost:3000',
     process.env.FRONTEND_URL
   ];
