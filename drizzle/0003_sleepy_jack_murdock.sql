@@ -1,0 +1,1 @@
+ALTER TABLE "text_copies" ALTER COLUMN "viewcount" DROP NOT NULL;

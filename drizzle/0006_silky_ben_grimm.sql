@@ -1,0 +1,1 @@
+ALTER TABLE "text_copies" ALTER COLUMN "url" DROP NOT NULL;
