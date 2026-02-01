@@ -10,18 +10,15 @@ async function bootstrap() {
     process.env.FRONTEND_URL
   ];
 
-  app.enableCors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-  })
+app.enableCors({
+  origin: [
+    'http://localhost:3000',
+    'https://pastbin-frontend.vercel.app',
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+});
+
 
   const port = 3000;
   await app.listen(port, '0.0.0.0');
