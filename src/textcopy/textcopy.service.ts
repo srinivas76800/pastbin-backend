@@ -14,6 +14,7 @@ export class TextcopyService {
     constructor(private readonly drizzle: DrizzleService) { }
     
     async copyurl(text: string) {
+        console.log(text,'this is text coming..')
     
         const inserted = await this.drizzle.db.insert(textCopies).values({ content: text }).returning({
             id: textCopies.id,
@@ -24,6 +25,7 @@ export class TextcopyService {
         const urlGen = id
 
         await this.drizzle.db.update(textCopies).set({ url: urlGen }).where(eq(textCopies.id,id))
+        console.log(urlGen,'this is url..')
         return {
             url: urlGen,
             text: text
@@ -34,6 +36,7 @@ export class TextcopyService {
     async copiedtext(sheardurl: any) {
 
         const result = await this.drizzle.db.select().from(textCopies).where(and(eq(textCopies.url, sheardurl), gte(textCopies.createdAt, sql`now() - interval '5 minutes'`)))
+        console.log(result,'this is result from link method..')
         if (result.length === 0) {
             console.log('link is expaird')
             return { 
