@@ -9,14 +9,16 @@ async function bootstrap() {
       'http://localhost:3000',
       'https://pastbin-frontend.vercel.app',
     ],
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    methods: ['GET', 'POST', 'OPTIONS'],
   });
 
-  const port = process.env.PORT || 3000;
+  const port = Number(process.env.PORT);
   await app.listen(port, '0.0.0.0');
 
   console.log('🚀 Server running on port:', port);
 }
+bootstrap();
+
 bootstrap();
 
 bootstrap();
